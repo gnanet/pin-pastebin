@@ -3,7 +3,7 @@ pin-pastebin
 
 Files and Folders
 -------------------------
-* docs - **contains the MySQL create script for the table, that functions as a catalog of all pastes**
+* docs - this folder **contains the MySQL create script** for the table, that contains a catalog of all pastes, and this README too
 * results - this folder is needed to hold the paste content as generated HTML files, and has to be writeable by the webserver
 * paste/htaccess.txt - you may want to protect this folder if multiple users are using the pastebin
 * paste/browser.php - listing of all pasted items, that were collected into the MySQL table referred above, allows also removing a paste without knowing the remove-hash
@@ -14,6 +14,11 @@ Files and Folders
 * htaccess.txt - required Rewrite settings to allow cleanURL access to the results
 * index.html - simple form to paste content
 * url.html - simple form to paste URLs
+
+Android client apps tested or assumed to work with paste-api.php
+-------------------------
+* [URLy](https://play.google.com/store/apps/details?id=com.mndroid.apps.urly)
+* [Yourls Shortener](https://play.google.com/store/apps/details?id=cc.lupine.yourlsshortener)
 
 TODO
 -------------------------
