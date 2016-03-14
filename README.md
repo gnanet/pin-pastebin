@@ -15,6 +15,11 @@ Files and Folders
 * index.html - simple form to paste content
 * url.html - simple form to paste URLs
 
+Android client apps tested or assumed to work with paste-api.php
+-------------------------
+* [URLy](https://play.google.com/store/apps/details?id=com.mndroid.apps.urly)
+* [Yourls Shortener](https://play.google.com/store/apps/details?id=cc.lupine.yourlsshortener)
+
 TODO
 -------------------------
 * unify paste-api.php and paste.php
