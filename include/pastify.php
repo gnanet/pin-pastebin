@@ -54,14 +54,48 @@ function PastifyText($text, $language, $desc)
     $lineout .= "$i";
 
     $html = <<<EOH
-<html>
+<!DOCTYPE html>
+<html lang="hu">
 <head>
-<link rel="stylesheet" type="text/css" href="/paste.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="robots" content="noarchive"/>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html">
 <meta http-equiv="Cache-Control" content="no-cache">
+<link rel="stylesheet" type="text/css" href="../paste.css"/>
+<!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="../highlight.css">
 <title>Pasted code - $desc</title>
 </head>
+<body  style="padding-top: 70px;">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <img style="float: left; margin-top: 7px;" src="../paste/pin-icon.png" width="32px" heigth="32px">
+          <a class="navbar-brand" href="/">PIN Pastebin</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container">
 <div style="border-bottom: 2px solid gray;">
 <table border="0" cellpadding="1" cellspacing="2" width="100%">
 <tr>
@@ -81,14 +115,20 @@ function PastifyText($text, $language, $desc)
   <td width="100%"><pre class="code" id="codemain">$output</pre></td>
 </tr>
 <tr>
-<td><pre class="code">&nbsp;</pre></td>
-<td>
-<textarea cols="50" rows="5">
+<td>&nbsp;</td>
+<td width="100%">
+<textarea cols="120" rows="5">
 $output
 </textarea>
 </td>
 </tr>
 </table>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+</body>
 </html>
 
 EOH;

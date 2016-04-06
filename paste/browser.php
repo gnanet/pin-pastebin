@@ -122,7 +122,9 @@ echo "</table></div>\n";
     <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
     <script  type="text/javascript" class="init">
     $(document).ready(function() {
-        $('#browse-pin').DataTable();
+        $('#browse-pin').DataTable( {
+            "order": [[ 1, "desc" ]]
+        } );
     } );
     </script>
 </body>

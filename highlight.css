@@ -1,0 +1,131 @@
+/* CSS derived from rafb.net */
+
+body {
+	margin: 0px; font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; background-color: white
+}
+A {
+	color: #0000cc
+}
+A:visited {
+	color: #0000cc
+}
+A:hover {
+	color: #cc9900; text-decoration: underline
+}
+.content_body {
+	padding-right: 20px; padding-left: 20px; width: 90%; padding-top: 20px
+}
+.intro_heading {
+	font-weight: bold; color: #330099; font-style: italic; font-family: Georgia, Times New Roman, Times
+}
+.intro_text {
+	font-size: smaller; font-family: Verdana, Geneva, Arial, Helvetica, sans-serif
+}
+.menu {
+	left: 0px; vertical-align: middle; padding-top: 5px; border-bottom: ghostwhite 10px outset; top: 0px
+}
+.button {
+	border-right: black 1px outset; padding-right: 3px; border-top: black 1px outset; padding-left: 3px; font-weight: bold; font-size: 14pt; padding-bottom: 3px; border-left: black 1px outset; color: gray; padding-top: 3px; border-bottom: black 1px outset; font-family: Arial, sans-serif; background-color: whitesmoke
+}
+.button#selected {
+	border-right: black 1px outset; padding-right: 3px; border-top: black 1px outset; padding-left: 3px; font-weight: bold; padding-bottom: 3px; border-left: black 1px outset; color: ghostwhite; padding-top: 3px; border-bottom: black 1px outset; background-color: gray
+}
+.button A {
+	text-decoration: none
+}
+.content {
+	font-size: medium
+}
+.links {
+	font-size: small
+}
+.footer {
+	font-size: xx-small; text-align: center
+}
+.listent {
+	font-size: small
+}
+.title {
+	font-weight: bold; font-size: large
+}
+.subtitle {
+	font-weight: bold; font-size: small
+}
+.subpage {
+	left: 0px; vertical-align: middle; border-bottom: ghostwhite 10px outset; top: 0px
+}
+.pasteinfo {
+	margin-top: 5px; margin-left: 5px
+}
+.blockdef {
+	border-right: darkgray 2px inset; padding-right: 10px; border-top: darkgray 2px inset; margin-top: 30px; padding-left: 10px; padding-bottom: 5px; border-left: darkgray 2px inset; padding-top: 5px; border-bottom: darkgray 2px inset; background-color: #fafafa
+}
+.contentblock {
+	
+}
+.ruledef {
+	text-decoration: underline
+}
+pre.code {
+	padding-right: 3px;
+	padding-left: 3px;
+	padding-bottom: 3px;
+	padding-top: 3px;
+	width: 100%;
+	background-color: #fff !important;
+	border: none;
+}
+.code2 {
+	padding-right: 0px; margin-right: 0px; font-family: Fixedsys, "Lucida Console", monospace; background-color: #b2b2ae
+}
+.action {
+	color: #efefef
+}
+.desc {
+	font-size: x-small
+}
+.bookdesc {
+	font-size: 70%
+}
+.html_entity {
+	color: red
+}
+.xml_pi {
+	color: blue
+}
+.xml_tag {
+	color: mediumblue
+}
+.keyword {
+	color: mediumblue
+}
+.comment {
+	color: green
+}
+.literal {
+	color: purple
+}
+.sch_literal {
+	color: green
+}
+.quotenum {
+	border-right: black 1px solid; color: ghostwhite; background-color: gray
+}
+.quotenum A {
+	color: ghostwhite; text-decoration: none
+}
+.quotenum A:visited {
+	color: ghostwhite; text-decoration: none
+}
+.kicked {
+	margin: 4px; color: darkred
+}
+.mode {
+	margin: 4px; color: darkred
+}
+.joined {
+	margin: 4px; color: darkblue
+}
+.listitem {
+	border-right: ghostwhite 2px outset; border-top: ghostwhite 2px outset; border-left: ghostwhite 2px outset; border-bottom: ghostwhite 2px outset
+}
