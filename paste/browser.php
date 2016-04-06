@@ -42,25 +42,62 @@ if ( isset($_GET["purgeitem"]) ) {
 
 
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
-"http://www.w3.org/TR/REC-html40/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <title>Pastebin access</title>
-<link rel="stylesheet" type="text/css" href="../paste.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="robots" content="noarchive"/>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html">
+<meta http-equiv="Cache-Control" content="No-Cache">
+
+<link rel="stylesheet" type="text/css" href="../paste.css"/>
+<!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
 <body>
-<span id="controls"><H1><a href="<?php echo $Config['site_domain']; ?>/"><img src="pin-icon.png"><br />NEW</a></H1></span>
+<body style="padding-top: 70px;">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <img style="float: left; margin-top: 7px;" src="pin-icon.png" width="32px" heigth="32px">
+          <a class="navbar-brand" href="<?php echo $Config['site_domain']; ?>">PIN Pastebin</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+                <li><a href="<?php echo $Config['site_domain']; ?>">NEW</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container">
+
 <?php
 
     $query = 'SELECT FROM_UNIXTIME(ts),url,description FROM pin ORDER BY ts DESC;';
 
     if ($result = db()->query($query) ) {
-    echo "<table width=100% border=1 padding=1>\n";
-    echo "<tr><td width=10%>ACTION</td><td width=15%>TIMESTAMP</td><td width=18%>URL</td><td width=57%>DESCRIPTION</td></tr>\n";
+    echo "<div class='table-responsive'>\n";
+    echo "<table id='browse-pin' class='table table-striped table-bordered'>\n";
+    echo "<thead><tr><th width=10%>ACTION</th><th width=15%>TIMESTAMP</th><th width=18%>URL</th><th width=57%>DESCRIPTION</th></tr></thead>\n";
+    echo "<tbody>\n";
     while($row = $result->fetch_array()) {
 
 
@@ -75,6 +112,17 @@ if ( isset($_GET["purgeitem"]) ) {
 }
     $result->close();
 }
-echo "</table>\n";
+echo "</table></div>\n";
 ?>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script  type="text/javascript" class="init">
+    $(document).ready(function() {
+        $('#browse-pin').DataTable();
+    } );
+    </script>
 </body>
