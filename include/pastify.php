@@ -118,7 +118,7 @@ function PastifyText($text, $language, $desc)
 <td>&nbsp;</td>
 <td width="100%">
 <textarea cols="120" rows="5">
-$output
+$text
 </textarea>
 </td>
 </tr>
