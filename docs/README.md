@@ -7,13 +7,17 @@ Files and Folders
 * results - this folder is needed to hold the paste content as generated HTML files, and has to be writeable by the webserver
 * paste/htaccess.txt - you may want to protect this folder if multiple users are using the pastebin
 * paste/browser.php - listing of all pasted items, that were collected into the MySQL table referred above, allows also removing a paste without knowing the remove-hash
+* paste/browser.ajax.php - DataTables server-side processing script.
+* paste/ssp.class.php - Helper functions for building a DataTables server-side processing SQL query
+* paste/pview.php - diplay paste content if it was stored in MySQL
 * config.php - as the name says, you have to set basic configuration here
 * paste-api.php - This script has to be referred to within **Yourls URL**
 * paste.php - the original rafb-nopaste script
 * remove.php - you can remove a paste if you know the right URL using this script
-* htaccess.txt - required Rewrite settings to allow cleanURL access to the results
-* index.html - simple form to paste content
-* url.html - simple form to paste URLs
+* htaccess.txt - required Rewrite settings to allow cleanURL access to the results in Apache
+* nginx.conf.txt - required Rewrite settings to allow cleanURL access to the results in NGINX
+* index.php - simple form to paste content
+* url.php - simple form to paste URLs with clipboard integration, and auto try title-fetch
 
 Android client apps tested or assumed to work with paste-api.php
 -------------------------

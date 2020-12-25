@@ -1,4 +1,4 @@
 RewriteEngine On
 RewriteRule ^p/(.*).html$ /results/$1.html [PT]
-RewriteRule ^p/(.*)$ /results/$1.html [PT]
+RewriteRule ^p/(.*)$ /paste/pview.php?p=$1 [PT]
 

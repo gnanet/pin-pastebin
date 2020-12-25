@@ -1,0 +1,178 @@
+/* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+
+#overlay {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 99999;
+    background-color: gray;
+    filter: alpha(opacity=75);
+    -moz-opacity: 0.75;
+    opacity: 0.75;
+/*    display: none; */
+}
+#overlay h2 {
+    position: fixed;
+    margin-left: 40%;
+    top: 40%;
+}
+
+
+@media 
+only screen and (min-width: 1020px),
+(min-device-width: 1024px) and (max-device-width: 1980px)  {
+	body { padding-top: 70px; }
+	th#hdr_act {
+		width:10%;
+	}
+	th#hdr_date {
+		width:15%;
+	}
+	th#hdr_url {
+		width:18%;
+	}
+	th#hdr_desc {
+		width:57%;
+	}
+
+
+	#d_act {
+		width:10%;
+	}
+	#d_date {
+		width:15%;
+	}
+	#d_url {
+		width:18%;
+	}
+	#d_desc {
+		width:57%;
+	}
+
+}
+
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+	body { padding-top: 70px; }
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; }
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 25% !important; 
+	}
+
+	.dont-break-out {
+        /* These are technically the same, but use both */
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        -ms-word-break: break-all;
+        /* This is the dangerous one in WebKit, as it breaks things wherever */
+        word-break: break-all;
+        /* Instead use this non-standard one: */
+            word-break: break-word;
+        /* Adds a hyphen where the word breaks, if supported (No Blink) */
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+    }
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 20%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	/*
+	Label the data
+	*/
+	td:nth-of-type(1):before { content: "Action"; }
+	td:nth-of-type(2):before { content: "Date"; }
+	td:nth-of-type(3):before { content: "URL"; }
+	td:nth-of-type(4):before { content: "Desc."; }
+}
+
+
+	/* Smartphones (portrait and landscape) ----------- */
+	@media only screen
+	and (min-device-width : 320px)
+	and (max-device-width : 480px) {
+		body {
+			padding: 0;
+			padding-top: 70px;
+			margin: 0;
+			width: 320px;
+		}
+        #navbar > ul > li > a,
+		.navbar-right {
+            float: right !important;
+        }
+        .navbar-right ~ .navbar-right {
+            margin-right: 0;
+        }
+	}
+
+	/* Smartphones (portrait and landscape) ----------- */
+	@media only screen
+	and (min-device-width : 360px)
+	and (max-device-width : 640px) {
+		body {
+			padding: 0;
+			padding-top: 70px;
+			margin: 0;
+			width: 358px;
+		}
+        #navbar > ul > li > a,
+		.navbar-right {
+            float: right !important;
+        }
+        .navbar-right ~ .navbar-right {
+            margin-right: 0;
+        }
+	}
+	/* Smartphones (portrait and landscape) ----------- */
+	@media only screen
+	and (min-device-width : 640px)
+	and (max-device-width : 1138px) {
+		body {
+			padding: 0;
+			padding-top: 70px;
+			margin: 0;
+			width: 638px; }
+		}
+
+	/* iPads (portrait and landscape) ----------- */
+	@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+		body {
+			width: 495px;
+			padding-top: 70px;
+		}
+	}
+

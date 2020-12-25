@@ -78,7 +78,7 @@ function CreatePage($input)
 
     unlink($tmpfname);
 
-    return $pasteUrl;
+    return array ($pasteUrl, $Config['site_domain'] . $Config['site_path'] . "/remove.php?p=$pasteID&t=$token", $text);
 }
 
 ?>

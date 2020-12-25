@@ -32,6 +32,7 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+require_once '../config.php';
 require_once("highlight.php");
 
 function PastifyText($text, $language, $desc)
@@ -49,9 +50,26 @@ function PastifyText($text, $language, $desc)
     # Do the actual syntax highlighting
     $output = SyntaxHighlight($text, $language);
 
+
+    if ( substr($desc, 0, 7) == 'URL htt' ) {
+        $ogtitle = substr($desc, 4);
+        $ogtype = "website";
+        $ogurl = substr($desc, 4);
+    } elseif ( substr($desc, 0, 4) == 'URL ') {
+        $ogtitle = substr($desc, 4);
+        $ogurl = "this-paste-url";
+        $ogtype = "website";
+    } else {
+        $ogtitle = $desc;
+        $ogurl = "this-paste-url";
+        $ogtype = "article";
+    }
+
     for ($i = 1; $i < $nlines; ++$i)
         $lineout .= "$i\n";
     $lineout .= "$i";
+
+    $og_image_path = $Config['site_domain'] . $Config['site_path'] . '/assets/og-image.jpg';
 
     $html = <<<EOH
 <!DOCTYPE html>
@@ -63,9 +81,16 @@ function PastifyText($text, $language, $desc)
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html">
 <meta http-equiv="Cache-Control" content="no-cache">
-<link rel="stylesheet" type="text/css" href="../paste.css"/>
+<meta property="og:title" content="$ogtitle" />
+<meta property="og:description" content="$ogtitle" />
+<meta property="og:url" content="$ogurl" />
+<meta property="og:type" content="$ogtype" />
+<meta property="og:image:width" content="1203">
+<meta property="og:image:height" content="630">
+<meta property="og:image" content="$og_image_path">
+<link rel="stylesheet" type="text/css" href="/paste.css"/>
 <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -73,7 +98,7 @@ function PastifyText($text, $language, $desc)
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" type="text/css" href="../highlight.css">
+    <link rel="stylesheet" type="text/css" href="/highlight.css">
 <title>Pasted code - $desc</title>
 </head>
 <body  style="padding-top: 70px;">
@@ -86,7 +111,7 @@ function PastifyText($text, $language, $desc)
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <img style="float: left; margin-top: 7px;" src="../paste/pin-icon.png" width="32px" heigth="32px">
+          <img style="float: left; margin-top: 7px;" src="/paste/pin-icon.png" width="32px" heigth="32px">
           <a class="navbar-brand" href="/">PIN Pastebin</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
@@ -127,7 +152,7 @@ $text
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 </body>
 </html>
 

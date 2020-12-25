@@ -34,7 +34,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
   $Config = array(
     # This is the domain where this pastebin is running
-    'site_domain'   => 'http://your-domain-here.domain',
+    'site_domain'   => 'https://your-domain-here.domain',
 
     # This is the part after the domain where this pastebin will be found.
     'site_path'     => '',
@@ -57,7 +57,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     'DB_PASS' => 'YOUR-DB-USER-PASSWORD',
   );
 
-
 function cfg( $p  ) {
     global $Config;
     return $Config[$p];
@@ -72,7 +71,7 @@ function db() {
             echo "Failed to connect to MySQL: (" . $db->connect_errno . ") " . $db->connect_error."\n";
             exit;
             }
-        $db->set_charset("utf8");
+        $db->set_charset("utf8mb4");
     }
 
     return $db;

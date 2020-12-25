@@ -35,18 +35,42 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 require_once 'config.php';
 
-
 require_once 'include/pastify.php';
 require_once 'include/createpage.php';
 
 $refererurl = $_SERVER['HTTP_REFERER'];
 $refererurl = preg_replace("/\/[^\/]*$/", "", $refererurl);
-$thisurl = "http://" . $_SERVER['HTTP_HOST'];
+$thisurl = "https://" . $_SERVER['HTTP_HOST'];
 $thisurl .= $_SERVER['SCRIPT_NAME'];
 $thisurl = preg_replace("/\/[^\/]*$/", "", $thisurl);
 
 if (isset($_POST['text']) && "" != ($ttemp = rtrim($_POST['text'])))
 {
+    $checkdupeqry = "SELECT url,description,rawtext FROM pin WHERE rawtext = '".$_POST['text']."';";
+    if ($checkresult = db()->query($checkdupeqry) ) {
+        if ( $checkresult->num_rows > 0 ) {
+            while ($row = $checkresult->fetch_assoc()) {
+
+                $resultdupeurl =  $row["url"];
+                $desc = $row["description"];
+                $text = $row["rawtext"];
+            }
+
+            $updatedupeqry = "UPDATE pin SET ts = UNIX_TIMESTAMP() WHERE url = '".$resultdupeurl."';";
+            if (!db()->query($updatedupeqry) ) {
+                echo "Failed: ".$query." <br>(" . db()->errno . ") " . db()->error."\n";
+                error_log( "Failed: ".$query." \n(" . db()->errno . ") " . db()->error."\n");
+                exit;
+            }
+
+            if( !headers_sent() ) {
+                @header("Location: $resultdupeurl");
+                error_log('UPDATED : '.$resultdupeurl." - ". $desc ."\n");
+                exit;
+            }
+        }
+    }
+
     $url = "";
     $baseurl = $_SERVER['SCRIPT_NAME'];
     $baseurl = preg_replace("/\/[^\/]*$/", "", $baseurl);
@@ -67,7 +91,6 @@ if (isset($_POST['text']) && "" != ($ttemp = rtrim($_POST['text'])))
     {
         $language = "Plain Text";
     }
-
 
     # Add a description if available
     if (isset($_POST['desc']) && "" != ($dtemp = rtrim($_POST['desc'])))
@@ -92,7 +115,8 @@ if (isset($_POST['text']) && "" != ($ttemp = rtrim($_POST['text'])))
 
     $finalText = PastifyText($text, $language, $desc);
 
-    $url = CreatePage($finalText);
+    list($url,$removeurl,$storedText) = CreatePage($finalText);
+
 
     # Note: this function was pretty specific to my implementation. It stored
     # paste metadata about the language used, description, and URL, as well as
@@ -100,7 +124,7 @@ if (isset($_POST['text']) && "" != ($ttemp = rtrim($_POST['text'])))
     # as promised after 24 hours)
     #add_to_db($desc, $language, $url);
 
-    $query = sprintf('INSERT INTO pin (url,description,lang,ts) VALUES ("%s","%s","%s",UNIX_TIMESTAMP(NOW()))',$url,$desc,$language);
+    $query = sprintf('INSERT INTO pin (url,description,rawtext,finaltext,lang,ts) VALUES ("%s","%s","%s","%s","%s",UNIX_TIMESTAMP(NOW()))',$url,$desc,db()->real_escape_string($text),db()->real_escape_string($storedText),$language);
 
     if (!db()->query($query) ) {
         echo "Failed: ".$query." <br>(" . db()->errno . ") " . db()->error."\n";

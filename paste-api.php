@@ -41,7 +41,7 @@ require_once 'include/createpage.php';
 
 $refererurl = $_SERVER['HTTP_REFERER'];
 $refererurl = preg_replace("/\/[^\/]*$/", "", $refererurl);
-$thisurl = "http://" . $_SERVER['HTTP_HOST'];
+$thisurl = "https://" . $_SERVER['HTTP_HOST'];
 $thisurl .= $_SERVER['SCRIPT_NAME'];
 $thisurl = preg_replace("/\/[^\/]*$/", "", $thisurl);
 
@@ -49,6 +49,7 @@ $thisurl = preg_replace("/\/[^\/]*$/", "", $thisurl);
 // Translate incoming request from URLy to fake YOURLS server
 if ( isset($_REQUEST['action']) && ($_REQUEST['action'] == 'shorturl') ) {
 	//error_log('Yourls debug get_defined_vars: '.print_r(get_defined_vars(), true));
+	//error_log('Yourls debug _SERVER: '.print_r($_SERVER, true));
 	$_POST['text'] = $_REQUEST['url'];
 	$_POST['desc'] = 'URL '.$_REQUEST['url'];
 	$_POST['lang'] = 'URL';
@@ -101,7 +102,7 @@ if (isset($_POST['text']) && "" != ($ttemp = rtrim($_POST['text'])))
 
     $finalText = PastifyText($text, $language, $desc);
 
-    $url = CreatePage($finalText);
+    list($url,$removeurl,$storedText) = CreatePage($finalText);
 
     # Note: this function was pretty specific to my implementation. It stored
     # paste metadata about the language used, description, and URL, as well as
@@ -109,7 +110,7 @@ if (isset($_POST['text']) && "" != ($ttemp = rtrim($_POST['text'])))
     # as promised after 24 hours)
     #add_to_db($desc, $language, $url);
 
-    $query = sprintf('INSERT INTO pin (url,description,lang,ts) VALUES ("%s","%s","%s",UNIX_TIMESTAMP(NOW()))',$url,$desc,$language);
+    $query = sprintf('INSERT INTO pin (url,description,rawtext,finaltext,lang,ts) VALUES ("%s","%s","%s","%s","%s",UNIX_TIMESTAMP(NOW()))',$url,$desc,db()->real_escape_string($text),db()->real_escape_string($storedText),$language);
 
     if (!db()->query($query) ) {
         echo "Failed: ".$query." <br>(" . db()->errno . ") " . db()->error."\n";
