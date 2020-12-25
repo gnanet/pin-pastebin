@@ -12,7 +12,7 @@ Files and Folders
 * paste/pview.php - diplay paste content if it was stored in MySQL
 * config.php - as the name says, you have to set basic configuration here
 * paste-api.php - This script has to be referred to within **Yourls URL**
-* paste.php - the original rafb-nopaste script
+* paste.php - the reworked paste script
 * remove.php - you can remove a paste if you know the right URL using this script
 * htaccess.txt - required Rewrite settings to allow cleanURL access to the results in Apache
 * nginx.conf.txt - required Rewrite settings to allow cleanURL access to the results in NGINX
@@ -21,8 +21,9 @@ Files and Folders
 
 Android client apps tested or assumed to work with paste-api.php
 -------------------------
-* [URLy](https://play.google.com/store/apps/details?id=com.mndroid.apps.urly)
 * [Yourls Shortener](https://play.google.com/store/apps/details?id=cc.lupine.yourlsshortener)
+* ~~[URLy](https://play.google.com/store/apps/details?id=com.mndroid.apps.urly)~~ Abandoned, has issues with https urls
+
 
 TODO
 -------------------------
