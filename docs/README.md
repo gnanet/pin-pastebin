@@ -19,6 +19,15 @@ Files and Folders
 * index.php - simple form to paste content
 * url.php - simple form to paste URLs with clipboard integration, and auto try title-fetch
 
+Fastest way to add URL
+-------------------------
+* Copy URL you want to add to the clipboard
+* Visit PIN main URL/url.php
+* Allow clipboard-access for the browser if not already done
+* Wait for clipboard reading, and auto-title
+* Submit
+
+
 Android client apps tested or assumed to work with paste-api.php
 -------------------------
 * [Yourls Shortener](https://play.google.com/store/apps/details?id=cc.lupine.yourlsshortener)
