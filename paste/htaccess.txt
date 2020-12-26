@@ -1,3 +1,4 @@
+<Files browse.php>
 Order Allow,Deny
 Allow From All
 
@@ -5,3 +6,4 @@ AuthName "PIN Browse Access"
 AuthType Basic
 AuthUserFile YOUR-HTPASSWD-FILE
 require valid-user
+</Files>

@@ -1,0 +1,4 @@
+location /paste/browser.php {
+    auth_basic "PIN Browse Access";
+    auth_basic_user_file YOUR-HTPASSWD-FILE;
+}
